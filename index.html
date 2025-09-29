@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Hertz - Project Portfolio</title>
+  <meta name="description" content="Web Hertz showcases a diverse portfolio of web development, graphic design, and digital marketing projects.">
+  <!-- Favicon -->
+  <link rel="icon" href="img/logo.png" type="image/x-icon">
+  <!-- Bootstrap and Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-color: #1B2A7F;
+      --accent-color: #E5442C;
+      --dark-gray: #4B4B4B;
+      --light-bg: #f8f9fa;
+      --card-border: #e0e0e0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+      cursor: default;
+    }
+    
+    /* Custom Cursor */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--accent-color);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.2s ease;
+      mix-blend-mode: difference;
+    }
+    
+    .cursor-follower {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.1s ease;
+    }
+    
+    .navbar {
+      background-color: var(--primary-color);
+      padding: 0.8rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      padding: 0.5rem 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-brand, .nav-link {
+      color: #fff !important;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    
+    .navbar-light .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    .navbar .nav-item .nav-link.active {
+      color: var(--accent-color) !important;
+      font-weight: 600;
+    }
+
+    .nav-link {
+      position: relative;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--accent-color);
+      transition: width 0.3s;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, var(--primary-color) 0%, #2c3eaa 100%);
+      color: white;
+      padding: 120px 20px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('img/bg.png') center center/cover no-repeat;
+      opacity: 0.1;
+      z-index: 1;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(90deg, #ffffff, #ffd6cc, #ffffff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientText 3s ease infinite;
+    }
+    
+    @keyframes gradientText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+      text-align: center;
+    }
+
+    .btn-accent {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(229, 68, 44, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-magnetic {
+      transition: transform 0.3s ease;
+    }
+    
+    .btn-magnetic:hover {
+      transform: translate(var(--tx, 0), var(--ty, 0));
+    }
+
+    .btn-accent:hover {
+      background-color: #c73c27;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(229, 68, 44, 0.4);
+    }
+
+    .section-title {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background-color: var(--accent-color);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    
+    /* Filter Buttons */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    
+    .filter-btn {
+      background: white;
+      border: 1px solid var(--card-border);
+      color: var(--dark-gray);
+      padding: 8px 20px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent-color);
+      color: white;
+      border-color: var(--accent-color);
+    }
+    
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      height: 100%;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+    
+    .card:hover {
+      transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-color: var(--accent-color);
+    }
+    
+    .project-img {
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      border-bottom: 1px solid var(--card-border);
+    }
+    
+    .card:hover .project-img {
+      transform: scale(1.05);
+    }
+    
+    .card-body {
+      padding: 1.5rem;
+    }
+    
+    .card-title {
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .card-text {
+      color: var(--dark-gray);
+      line-height: 1.6;
+      text-align: justify;
+    }
+    
+    footer {
+      background-color: var(--dark-gray);
+      color: #fff;
+      padding: 40px 0 20px;
+    }
+    
+    .footer-text {
+      margin-bottom: 0;
+      opacity: 0.8;
+    }
+    
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+      background-color: #25D366;
+      color: white;
+      font-size: 24px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+      animation: none;
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+    
+    .project-tag {
+      display: inline-block;
+      background-color: rgba(229, 68, 44, 0.1);
+      color: var(--accent-color);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      border: 1px solid rgba(229, 68, 44, 0.2);
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      z-index: 99;
+      background-color: var(--primary-color);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background-color: #0f1a6b;
+      transform: translateY(-3px);
+    }
+    
+    .project-count {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .section-subtitle {
+      color: var(--dark-gray);
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 50px;
+      text-align: center;
+      line-height: 1.7;
+    }
+    
+    /* Statistics Section */
+    .stats-section {
+      background-color: var(--light-bg);
+      padding: 80px 0;
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .stat-label {
+      font-size: 1.1rem;
+      color: var(--dark-gray);
+      font-weight: 500;
+    }
+    
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 80px 0;
+    }
+    
+    .testimonial-card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border: 1px solid var(--card-border);
+      margin: 15px;
+      transition: transform 0.3s ease;
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      color: var(--dark-gray);
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      object-fit: cover;
+    }
+    
+    .author-info h5 {
+      margin-bottom: 5px;
+      color: var(--primary-color);
+    }
+    
+    .author-info p {
+      margin-bottom: 0;
+      color: var(--dark-gray);
+      font-size: 0.9rem;
+    }
+    
+    /* Project Modal */
+    .modal-content {
+      border-radius: 12px;
+      border: none;
+      overflow: hidden;
+    }
+    
+    .modal-header {
+      background-color: var(--primary-color);
+      color: white;
+      border-bottom: none;
+    }
+    
+    .modal-body {
+      padding: 30px;
+    }
+    
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .gallery-img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-img:hover {
+      transform: scale(1.05);
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 15px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    
+    .project-link:hover {
+      background: #0f1a6b;
+      color: white;
+    }
+    
+    .project-link.live-demo {
+      background: var(--accent-color);
+    }
+    
+    .project-link.live-demo:hover {
+      background: #c73c27;
+    }
+    
+    /* Scroll Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Timeline Section */
+    .timeline-section {
+      padding: 80px 0;
+      background-color: var(--light-bg);
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: var(--primary-color);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+    
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      border: 4px solid var(--accent-color);
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .left {
+      left: 0;
+    }
+    
+    .right {
+      left: 50%;
+    }
+    
+    .left::after {
+      right: -13px;
+    }
+    
+    .right::after {
+      left: -13px;
+    }
+    
+    .timeline-content {
+      padding: 20px 30px;
+      background-color: white;
+      position: relative;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .timeline-date {
+      font-weight: bold;
+      color: var(--accent-color);
+      margin-bottom: 5px;
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        padding: 100px 20px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section-title::after {
+        width: 60px;
+      }
+      
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .back-to-top {
+        bottom: 80px;
+        right: 20px;
+      }
+      
+      .card-text {
+        text-align: left;
+      }
+      
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .timeline-item::after {
+        left: 18px;
+      }
+      
+      .left::after, .right::after {
+        left: 18px;
+      }
+      
+      .right {
+        left: 0%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- Sticky Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light sticky-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#home">
+      <img src="img/logo.png" alt="Web Hertz Logo" height="40" width="40" class="me-2">
+      Web Hertz
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#timeline">Our Journey</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-4">Showcasing Our Creative Portfolio</h1>
+    <p class="lead mb-4">
+      Discover how Web Hertz delivers with impact through our diverse range of projects in web development, graphic design, and digital marketing.
+    </p>
+    <div class="text-center">
+      <a href="#projects" class="btn btn-accent btn-lg btn-magnetic">View Our Work</a>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" style="background: #fff;">
+  <div class="container">
+    <h2 class="text-center text-dark display-4 fw-bold mb-3">Our Achievements</h2>
+    <p class="text-center text-secondary lead mb-5">Numbers that speak louder than words!</p>
+
+    <div class="row text-center">
+      <!-- Projects Completed -->
+      <div class="col-md-3 col-6 mb-4">
+        <div class="rounded-3 p-4 border border-2 border-light shadow-sm h-100"
+             style="transition: all 0.4s ease; background:#f9f9f9;"
+             onmouseover="this.style.transform='translateY(-8px)'; this.style.background='#f1f1f1';"
+             onmouseout="this.style.transform='translateY(0)'; this.style.background='#f9f9f9';">
+          <div class="display-3 fw-bold text-primary mb-2 animate__animated animate__fadeInUp">40+</div>
+          <div class="h5 text-dark mb-3">Projects Completed</div>
+          <span class="badge" style="background: #E5442C; padding: 8px 16px;">Trending ↑</span>
+        </div>
+      </div>
+
+      <!-- Happy Clients -->
+      <div class="col-md-3 col-6 mb-4">
+        <div class="rounded-3 p-4 border border-2 border-light shadow-sm h-100"
+             style="transition: all 0.4s ease; background:#f9f9f9;"
+             onmouseover="this.style.transform='translateY(-8px)'; this.style.background='#f1f1f1';"
+             onmouseout="this.style.transform='translateY(0)'; this.style.background='#f9f9f9';">
+          <div class="display-3 fw-bold text-primary mb-2 animate__animated animate__fadeInUp">35+</div>
+          <div class="h5 text-dark mb-3">Happy Clients</div>
+          <span class="badge" style="background: #E5442C; padding: 8px 16px;">95% Retention</span>
+        </div>
+      </div>
+
+      <!-- Years Experience -->
+      <div class="col-md-3 col-6 mb-4">
+        <div class="rounded-3 p-4 border border-2 border-light shadow-sm h-100"
+             style="transition: all 0.4s ease; background:#f9f9f9;"
+             onmouseover="this.style.transform='translateY(-8px)'; this.style.background='#f1f1f1';"
+             onmouseout="this.style.transform='translateY(0)'; this.style.background='#f9f9f9';">
+          <div class="display-3 fw-bold text-primary mb-2 animate__animated animate__fadeInUp">5+</div>
+          <div class="h5 text-dark mb-3">Years Experience</div>
+          <span class="badge" style="background: #E5442C; padding: 8px 16px;">Expert Level</span>
+        </div>
+      </div>
+
+      <!-- Success Rate -->
+      <div class="col-md-3 col-6 mb-4">
+        <div class="rounded-3 p-4 border border-2 border-light shadow-sm h-100"
+             style="transition: all 0.4s ease; background:#f9f9f9;"
+             onmouseover="this.style.transform='translateY(-8px)'; this.style.background='#f1f1f1';"
+             onmouseout="this.style.transform='translateY(0)'; this.style.background='#f9f9f9';">
+          <div class="display-3 fw-bold text-primary mb-2 animate__animated animate__fadeInUp">95%</div>
+          <div class="h5 text-dark mb-3">Success Rate</div>
+          <span class="badge" style="background: #E5442C; padding: 8px 16px;">Top Rated</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Our Projects Portfolio -->
+<section class="py-5" id="projects">
+  <div class="container">
+    <h2 class="section-title text-center">Project Portfolio</h2>
+    <p class="section-subtitle">We've worked with amazing clients on all kinds of projects, helping them grow and succeed every step of the way.</p>
+    
+    <div class="text-center mb-5">
+      <span class="project-count">40+ Projects Completed</span>
+    </div>
+
+       <!-- FILTER BUTTONS GO HERE -->
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="web-dev">Web Development</button>
+      <button class="filter-btn" data-filter="graphic-design">Graphic Design</button>
+      <button class="filter-btn" data-filter="social-media">Social Media</button>
+      <button class="filter-btn" data-filter="seo">SEO & Marketing</button>
+      <button class="filter-btn" data-filter="video">Video Editing</button>
+      <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
+    </div>
+
+    <div class="row g-4 project-container">
+  <!-- Row 1 -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="web-dev seo">
+    <div class="card h-100 project-card">
+      <img src="img/13.png" class="card-img-top project-img" alt="CentLinux" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Web Development + SEO</span>
+        <h5 class="card-title">CentLinux</h5>
+        <p class="card-text">Developed a responsive support portal; optimized metadata and content to increase organic traffic by 40%.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="centlinux">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="video seo">
+    <div class="card h-100 project-card">
+      <img src="img/12.png" class="card-img-top project-img" alt="Chef Kanwal's Kitchen" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Video Editing + SEO</span>
+        <h5 class="card-title">Chef Kanwal's Kitchen</h5>
+        <p class="card-text">Edited and optimized recipe videos—achieved 25% subscriber growth and enhanced engagement.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="chef-kanwal">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/2.png" class="card-img-top project-img" alt="Allied School" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design</span>
+        <h5 class="card-title">Allied School</h5>
+        <p class="card-text">Revamped brochures and branding collateral; improved visual appeal and enrollment inquiries.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="allied-school">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/3.png" class="card-img-top project-img" alt="STEP School" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design</span>
+        <h5 class="card-title">STEP School</h5>
+        <p class="card-text">Designed promotional posters and digital assets, contributing to successful academic campaign launch.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="step-school">View Details</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Row 2 -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/1.png" class="card-img-top project-img" alt="The Savvy School" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design</span>
+        <h5 class="card-title">The Savvy School</h5>
+        <p class="card-text">Crafted brand-aligned visuals that reinforced school's modern and dynamic image.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="savvy-school">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="social-media">
+    <div class="card h-100 project-card">
+      <img src="img/11.png" class="card-img-top project-img" alt="Help The Humanity" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Social Media Management</span>
+        <h5 class="card-title">Help The Humanity</h5>
+        <p class="card-text">Launched content strategy and campaigns; tripled social engagement and increased donor interactions.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="help-humanity">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/4.png" class="card-img-top project-img" alt="Al Karim Marketing" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design</span>
+        <h5 class="card-title">Al Karim Marketing</h5>
+        <p class="card-text">Developed visuals for major real-estate projects; enhanced project presentation and brand consistency.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="al-karim">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="social-media">
+    <div class="card h-100 project-card">
+      <img src="img/civilsociety.png" class="card-img-top project-img" alt="Civil Society Humanity Organization" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Social Media Management</span>
+        <h5 class="card-title">Civil Society Humanity Org</h5>
+        <p class="card-text">Crafted awareness and fundraising campaigns; grew social reach by 50% and increased donor contacts.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="civil-society">View Details</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Row 3 - Infrastructure Projects -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/5.png" class="card-img-top project-img" alt="Cert Authority" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Infrastructure Security</span>
+        <h5 class="card-title">Configure Certificate Authority (CentOS 7)</h5>
+        <p class="card-text">Built enterprise-grade CA to manage SSL certs across systems—strengthened internal network security.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="cert-authority">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/6.png" class="card-img-top project-img" alt="SVN and USVN" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Version Control</span>
+        <h5 class="card-title">SVN & USVN Setup</h5>
+        <p class="card-text">Deployed Subversion and USVN with multi-user support—streamlined code collaboration.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="svn-usvn">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/7.png" class="card-img-top project-img" alt="FreeIPA Identity" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Access Control</span>
+        <h5 class="card-title">FreeIPA Identity Management</h5>
+        <p class="card-text">Implemented centralized authentication and authorization using FreeIPA—simplified user management.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="freeipa">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/8.png" class="card-img-top project-img" alt="OpenLDAP" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Authentication Server</span>
+        <h5 class="card-title">OpenLDAP Remote Auth</h5>
+        <p class="card-text">Deployed LDAP server for centralized remote authentication—enhanced user access efficiency and security.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="openldap">View Details</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Row 4 - Infrastructure Projects -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/9.png" class="card-img-top project-img" alt="Nagios Core" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Server Monitoring</span>
+        <h5 class="card-title">Nagios Core 4.2 Monitoring</h5>
+        <p class="card-text">Configured Nagios for proactive server and service monitoring—improved uptime and alerting.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="nagios">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/10.png" class="card-img-top project-img" alt="DB to ASM" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Storage Optimization</span>
+        <h5 class="card-title">DB Migration to Oracle ASM</h5>
+        <p class="card-text">Migrated databases from OS file system to ASM—boosted I/O performance and scalability.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="db-asm">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="web-dev">
+    <div class="card h-100 project-card">
+      <img src="img/6.png" class="card-img-top project-img" alt="LEMP Stack" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Web Stack Setup</span>
+        <h5 class="card-title">LEMP Server</h5>
+        <p class="card-text">Built LEMP stack (Linux, Nginx, MySQL, PHP) for fast and secure web applications.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="lemp">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="web-dev">
+    <div class="card h-100 project-card">
+      <img src="img/8.png" class="card-img-top project-img" alt="LAMP Stack" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Web Stack Setup</span>
+        <h5 class="card-title">LAMP Server</h5>
+        <p class="card-text">Deployed LAMP (Linux, Apache, MySQL, PHP) stack—ideal for legacy and PHP-based apps.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="lamp">View Details</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Row 5 - Database Projects -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/7.png" class="card-img-top project-img" alt="Oracle Forms" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Middleware Setup</span>
+        <h5 class="card-title">Oracle Forms & Reports 11g</h5>
+        <p class="card-text">Configured Oracle Fusion Middleware forms and reports server—enabling enterprise data entry and analytics.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="oracle-forms">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/6.png" class="card-img-top project-img" alt="OEM 12c" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">System Monitoring</span>
+        <h5 class="card-title">Oracle Enterprise Manager 12c</h5>
+        <p class="card-text">Deployed OEM 12c to monitor and manage Oracle databases and middleware—centralized system overview.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="oem">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/5.png" class="card-img-top project-img" alt="MS SQL Server" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">DB Setup & Maintenance</span>
+        <h5 class="card-title">Microsoft SQL Server</h5>
+        <p class="card-text">Installed and maintained SQL Server environments—ensured data integrity and optimized performance.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="sql-server">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/5.png" class="card-img-top project-img" alt="CIS Benchmark" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Security Hardening</span>
+        <h5 class="card-title">CIS Benchmark Oracle 11g R2</h5>
+        <p class="card-text">Applied CIS v1.0.0 benchmarks to harden Oracle database—enhanced compliance and security.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="cis-benchmark">View Details</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Row 6 - Database Projects -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/6.png" class="card-img-top project-img" alt="Oracle Grid Infra" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">High Availability</span>
+        <h5 class="card-title">Oracle Grid Infrastructure</h5>
+        <p class="card-text">Configured Grid Infrastructure for RAC clusters—ensuring redundancy and scalability.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="grid-infra">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/9.png" class="card-img-top project-img" alt="DB 11g Upgrade" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Platform Upgrade</span>
+        <h5 class="card-title">Oracle Database 11g Upgrade</h5>
+        <p class="card-text">Planned and executed Oracle 11g upgrade—improved database stability and supportability.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="oracle-upgrade">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/7.png" class="card-img-top project-img" alt="Oracle Active Data Guard" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Disaster Recovery</span>
+        <h5 class="card-title">Oracle Active Data Guard</h5>
+        <p class="card-text">Implemented Active Data Guard replication—ensured real-time failover and data resilience.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="data-guard">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/6.png" class="card-img-top project-img" alt="Oracle Data Guard" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">HA Solution</span>
+        <h5 class="card-title">Oracle Data Guard</h5>
+        <p class="card-text">Set up Data Guard to enable high-availability standby databases for disaster protection.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="oracle-data-guard">View Details</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Row 7 - Infrastructure Projects -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/9.png" class="card-img-top project-img" alt="Rocky Linux Upgrade" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">System Upgrade</span>
+        <h5 class="card-title">Rocky Linux Upgrade</h5>
+        <p class="card-text">Upgraded Hetzner VPS from Rocky Linux 8.8 to 9.3—ensured compatibility and patched vulnerabilities.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="rocky-linux">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/5.png" class="card-img-top project-img" alt="DB 12c" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">New DB Setup</span>
+        <h5 class="card-title">Oracle Database 12c</h5>
+        <p class="card-text">Installed and configured Oracle 12c environment—supporting modern data storage and pluggable DBs.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="oracle-12c">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="infrastructure">
+    <div class="card h-100 project-card">
+      <img src="img/10.png" class="card-img-top project-img" alt="Mail Server" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Email Infrastructure</span>
+        <h5 class="card-title">Mail Server on RHEL 5</h5>
+        <p class="card-text">Deployed and secured local mail server—enhanced internal communication capabilities.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="mail-server">View Details</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- New Graphic Design Projects -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/stylehustle.png" class="card-img-top project-img" alt="Style Hustle" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design</span>
+        <h5 class="card-title">Style Hustle</h5>
+        <p class="card-text">Designed modern brand visuals and creative assets—enhanced brand presence and client appeal.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="style-hustle">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/toolnest.png" class="card-img-top project-img" alt="Tool Nest" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design</span>
+        <h5 class="card-title">Tool Nest</h5>
+        <p class="card-text">Developed promotional graphics and brand-aligned creatives—improved outreach and engagement.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="tool-nest">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/likeleverage.png" class="card-img-top project-img" alt="Like & Leverage" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design</span>
+        <h5 class="card-title">Like & Leverage</h5>
+        <p class="card-text">Produced engaging designs tailored for campaigns—boosted brand awareness and client trust.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="like-leverage">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design social-media">
+    <div class="card h-100 project-card">
+      <img src="img/aaahub.png" class="card-img-top project-img" alt="AAA Creative HUB" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design + Social Media</span>
+        <h5 class="card-title">AAA Creative HUB</h5>
+        <p class="card-text">Designed impactful visuals and managed social media presence—resulted in stronger brand positioning.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="aaa-creative">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2 New -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design social-media">
+    <div class="card h-100 project-card">
+      <img src="img/haniaoptics.png" class="card-img-top project-img" alt="Hania Optics" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design + Social Media + Ads</span>
+        <h5 class="card-title">Hania Optics</h5>
+        <p class="card-text">Delivered creative visuals, managed campaigns, and optimized ads—drove customer engagement and sales growth.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="hania-optics">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/ksatti.png" class="card-img-top project-img" alt="K Satti Communications" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design</span>
+        <h5 class="card-title">K Satti Communications</h5>
+        <p class="card-text">Designed professional creatives for corporate communication—improved brand consistency and visual identity.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="ksatti">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="web-dev graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/asterialeads.png" class="card-img-top project-img" alt="Asteria Leads" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Website Development + Graphic Design</span>
+        <h5 class="card-title">Asteria Leads</h5>
+        <p class="card-text">Built a modern website and crafted engaging visuals—boosted online presence and brand appeal.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="asteria-leads">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design social-media">
+    <div class="card h-100 project-card">
+      <img src="img/dialerhosting.png" class="card-img-top project-img" alt="Dialerhosting 360" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design + LinkedIn</span>
+        <h5 class="card-title">Dialerhosting 360</h5>
+        <p class="card-text">Created brand visuals and managed LinkedIn presence—expanded business reach and credibility.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="dialerhosting">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3 New -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/rkleads.png" class="card-img-top project-img" alt="RK Leads" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Graphic Design</span>
+        <h5 class="card-title">RK Leads</h5>
+        <p class="card-text">Delivered sleek and professional designs—improved brand recognition and client confidence.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="rk-leads">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="web-dev social-media">
+    <div class="card h-100 project-card">
+      <img src="img/uniteddigital.png" class="card-img-top project-img" alt="United Digital Media" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Website Development + LinkedIn</span>
+        <h5 class="card-title">United Digital Media</h5>
+        <p class="card-text">Developed a responsive website and managed LinkedIn profile—boosted client acquisition and online trust.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="united-digital">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="web-dev graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/voxifyglobal.png" class="card-img-top project-img" alt="Voxify Global" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Website Development + Graphic Design</span>
+        <h5 class="card-title">Voxify Global</h5>
+        <p class="card-text">Built a modern website and designed brand-focused creatives—strengthened digital presence.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="voxify">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Projects -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design video">
+    <div class="card h-100 project-card">
+      <img src="img/kitaabemizaj.png" class="card-img-top project-img" alt="Kitaab E Mizaj" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Logo + Video + Thumbnails</span>
+        <h5 class="card-title">Kitaab E Mizaj</h5>
+        <p class="card-text">Created a compelling logo, designed eye-catching thumbnails, and edited videos—boosting brand recognition and audience engagement.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="kitaab-mizaj">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/Vorteil Solutions Posts.png" class="card-img-top project-img" alt="Vorteil Solutions" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Logo + Post Design</span>
+        <h5 class="card-title">Vorteil Solutions</h5>
+        <p class="card-text">Designed a modern corporate logo and engaging social posts—helped strengthen brand presence and client trust.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="vorteil">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/brewcodesolutions.png" class="card-img-top project-img" alt="Brewcode Solutions" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Logo Design</span>
+        <h5 class="card-title">Brewcode Solutions</h5>
+        <p class="card-text">Delivered a professional, brand-focused logo—enhanced company identity and digital appeal.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="brewcode">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design web-dev">
+    <div class="card h-100 project-card">
+      <img src="img/ZEELISTINE .png" class="card-img-top project-img" alt="ZEELISTINE HEALTHCARE" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Logo + Website Development</span>
+        <h5 class="card-title">ZEELISTINE Healthcare Pvt Ltd</h5>
+        <p class="card-text">Designed a healthcare logo and developed a modern website—built credibility and improved patient engagement.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="zeelistine">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design web-dev">
+    <div class="card h-100 project-card">
+      <img src="img/Cickforhelathinsurance.png" class="card-img-top project-img" alt="Clickforhealth Insurance" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Logo + Post + Website</span>
+        <h5 class="card-title">Clickforhealth Insurance</h5>
+        <p class="card-text">Crafted a unique logo, designed marketing posts, and built a responsive website—enhanced trust and lead generation.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="clickforhealth">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/khanienclave.png" class="card-img-top project-img" alt="Khani Enclave Real Estate" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Post Design</span>
+        <h5 class="card-title">Khani Enclave Real Estate</h5>
+        <p class="card-text">Designed sleek real-estate promotional posts—helped attract buyers and enhance project presentation.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="khani-enclave">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/parkviewcity.png" class="card-img-top project-img" alt="Park View Real Estate" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Post Design</span>
+        <h5 class="card-title">Park View Real Estate</h5>
+        <p class="card-text">Created high-impact property visuals—boosted visibility and investor interest in real-estate campaigns.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="parkview">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design">
+    <div class="card h-100 project-card">
+      <img src="img/royalorchard.png" class="card-img-top project-img" alt="Royal Orchard Enclave" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Post Design</span>
+        <h5 class="card-title">Royal Orchard Enclave</h5>
+        <p class="card-text">Designed premium real-estate posts—enhanced branding and improved project engagement.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="royal-orchard">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3 -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design web-dev">
+    <div class="card h-100 project-card">
+      <img src="img/askmunir.png" class="card-img-top project-img" alt="AskMunir" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Logo + Post + Web Design</span>
+        <h5 class="card-title">AskMunir</h5>
+        <p class="card-text">Built a strong digital identity with logo, creative posts, and a modern web design—showcased professional services effectively.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="askmunir">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design social-media">
+    <div class="card h-100 project-card">
+      <img src="img/urdushairi.png" class="card-img-top project-img" alt="Urdushairi247" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Post Design + Content</span>
+        <h5 class="card-title">Urdushairi247</h5>
+        <p class="card-text">Designed poetic visuals and managed regular uploads—boosted follower engagement and audience reach.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="urdushairi">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="graphic-design video">
+    <div class="card h-100 project-card">
+      <img src="img/sisfashion.png" class="card-img-top project-img" alt="Sis Fashion Wardrobe" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Post Design + Video Editing</span>
+        <h5 class="card-title">Sis Fashion Wardrobe</h5>
+        <p class="card-text">Created stylish visuals and edited fashion videos—strengthened brand appeal and improved customer interaction.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="sis-fashion">View Details</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="video social-media">
+    <div class="card h-100 project-card">
+      <img src="img/thairvlogs.png" class="card-img-top project-img" alt="Tahir Bhai Vlogs" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">YouTube Channel Management</span>
+        <h5 class="card-title">Tahir Bhai Vlogs</h5>
+        <p class="card-text">Managed channel, edited engaging videos, and designed thumbnails—resulted in steady subscriber growth and higher watch-time.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="tahir-vlogs">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 4 -->
+  <div class="col-md-6 col-lg-4 col-xl-3 project-item fade-in" data-category="web-dev seo">
+    <div class="card h-100 project-card">
+      <img src="img/getready.png" class="card-img-top project-img" alt="GetReady25" loading="lazy">
+      <div class="card-body">
+        <span class="project-tag">Website + Blog + AdSense</span>
+        <h5 class="card-title">GetReady25</h5>
+        <p class="card-text">Designed a monetized website with SEO-optimized blogs—enabled AdSense approval and consistent revenue growth.</p>
+        <button class="btn btn-sm btn-outline-primary view-project" data-project="getready">View Details</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="timeline-section py-5" id="timeline" style="background: #f9f9f9;">
+  <div class="container">
+    <h2 class="section-title text-center mb-3" style="font-size: 2.5rem; font-weight: 700; color: #222;">
+      Our Journey
+    </h2>
+    <p class="section-subtitle text-center mb-5" style="font-size: 1.1rem; color: #555;">
+      A glimpse into the milestones that shaped Web Hertz into what we are today.
+    </p>
+    
+    <div class="timeline">
+      
+      <!-- 2020 -->
+      <div class="timeline-item left fade-in">
+        <div class="timeline-content shadow-sm rounded p-4" style="background: #fff;">
+          <div class="timeline-date text-primary fw-bold mb-2">2020</div>
+          <h4 class="mb-2">Founded with Vision</h4>
+          <p style="color: #666;">Web Hertz was born with a mission to craft innovative digital solutions and empower businesses online.</p>
+        </div>
+      </div>
+      
+      <!-- 2021 -->
+      <div class="timeline-item right fade-in">
+        <div class="timeline-content shadow-sm rounded p-4" style="background: #fff;">
+          <div class="timeline-date text-primary fw-bold mb-2">2021</div>
+          <h4 class="mb-2">First Enterprise Client</h4>
+          <p style="color: #666;">We partnered with our first enterprise client, marking a breakthrough that accelerated our growth.</p>
+        </div>
+      </div>
+      
+      <!-- 2022 -->
+      <div class="timeline-item left fade-in">
+        <div class="timeline-content shadow-sm rounded p-4" style="background: #fff;">
+          <div class="timeline-date text-primary fw-bold mb-2">2022</div>
+          <h4 class="mb-2">Team Expansion</h4>
+          <p style="color: #666;">Welcomed top talent in design, development, and marketing, building a stronger, more diverse team.</p>
+        </div>
+      </div>
+      
+      <!-- 2023 -->
+      <div class="timeline-item right fade-in">
+        <div class="timeline-content shadow-sm rounded p-4" style="background: #fff;">
+          <div class="timeline-date text-primary fw-bold mb-2">2023</div>
+          <h4 class="mb-2">40+ Projects Delivered</h4>
+          <p style="color: #666;">Successfully completed 40+ projects across industries, earning client trust and long-term partnerships.</p>
+        </div>
+      </div>
+      
+      <!-- 2024 -->
+      <div class="timeline-item left fade-in">
+        <div class="timeline-content shadow-sm rounded p-4" style="background: #fff;">
+          <div class="timeline-date text-primary fw-bold mb-2">2024</div>
+          <h4 class="mb-2">Industry Recognition</h4>
+          <p style="color: #666;">Proudly received awards for excellence in web development, innovation, and digital marketing impact.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <h2 class="section-title text-center">Client Testimonials</h2>
+    <p class="section-subtitle">What our clients say about working with us.</p>
+    
+    <div class="row">
+      <div class="col-md-4 fade-in">
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "Web Hertz transformed our online presence completely. Their attention to detail and creative approach exceeded our expectations."
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="author-avatar">
+            <div class="author-info">
+              <h5>Michael Johnson</h5>
+              <p>CEO, TechSolutions Inc.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "The team at Web Hertz delivered our project on time and within budget. Their communication was excellent throughout the process."
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="author-avatar">
+            <div class="author-info">
+              <h5>Sarah Williams</h5>
+              <p>Marketing Director, BrandCo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-in">
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "I'm impressed with the quality of work and professionalism. Web Hertz truly understands how to translate business needs into digital solutions."
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Client" class="author-avatar">
+            <div class="author-info">
+              <h5>David Chen</h5>
+              <p>Founder, StartupXYZ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project Modal -->
+<div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="projectModalLabel">Project Details</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="projectCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <!-- Carousel items will be dynamically added -->
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        
+        <h4 id="modalProjectTitle"></h4>
+        <p id="modalProjectDescription"></p>
+        
+        <div class="project-gallery">
+          <!-- Gallery images will be dynamically added -->
+        </div>
+        
+        <div class="project-links">
+          <a href="#" class="project-link case-study" target="_blank">
+            <i class="bi bi-file-text"></i> Case Study
+          </a>
+          <a href="#" class="project-link live-demo" target="_blank">
+            <i class="bi bi-play-circle"></i> Live Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Back to Top Button -->
+<a href="#" class="back-to-top">
+  <i class="bi bi-arrow-up"></i>
+</a>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/923195191759" target="_blank" class="whatsapp-float" aria-label="Contact us on WhatsApp">
+  <i class="bi bi-whatsapp"></i>
+</a>
+
+<!-- Footer -->
+<footer class="py-4">
+  <div class="container text-center">
+    <p class="footer-text">&copy; 2025 Web Hertz. Crafted with passion and precision.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Custom Cursor
+  document.addEventListener('DOMContentLoaded', function() {
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      
+      setTimeout(() => {
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+      }, 100);
+    });
+    
+    // Magnetic buttons
+    const magneticButtons = document.querySelectorAll('.btn-magnetic');
+    
+    magneticButtons.forEach(button => {
+      button.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const deltaX = (x - centerX) / 5;
+        const deltaY = (y - centerY) / 5;
+        
+        this.style.setProperty('--tx', `${deltaX}px`);
+        this.style.setProperty('--ty', `${deltaY}px`);
+      });
+      
+      button.addEventListener('mouseleave', function() {
+        this.style.setProperty('--tx', '0px');
+        this.style.setProperty('--ty', '0px');
+      });
+    });
+  });
+
+  // Active nav link highlighting
+  document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navbar = document.querySelector('.navbar');
+    const backToTop = document.querySelector('.back-to-top');
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      
+      // Show/hide back to top button
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+      
+      // Highlight nav link on scroll
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= (sectionTop - 100)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Highlight nav link on click
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    
+    // Project Filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        const filterValue = this.getAttribute('data-filter');
+        
+        projectItems.forEach(item => {
+          if (filterValue === 'all' || item.getAttribute('data-category').includes(filterValue)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Statistics Counter Animation
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          const count = parseInt(target.getAttribute('data-count'));
+          const duration = 2000; // 2 seconds
+          const step = count / (duration / 16); // 60fps
+          let current = 0;
+          
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= count) {
+              current = count;
+              clearInterval(timer);
+            }
+            target.textContent = Math.floor(current);
+          }, 16);
+          
+          observer.unobserve(target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    statNumbers.forEach(number => {
+      observer.observe(number);
+    });
+    
+    // Scroll Animations
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(element => {
+      fadeObserver.observe(element);
+    });
+    
+    // Project Modal
+    const viewProjectButtons = document.querySelectorAll('.view-project');
+    const projectModal = new bootstrap.Modal(document.getElementById('projectModal'));
+    
+    // Sample project data (in a real scenario, this would come from a database)
+    const projects = {
+      'centlinux': {
+        title: 'CentLinux',
+        description: 'Developed a responsive support portal with optimized metadata and content strategy that increased organic traffic by 40%. The project involved creating a user-friendly interface, implementing SEO best practices, and integrating a knowledge base system.',
+        images: ['img/13.png', 'img/13.png', 'img/13.png'],
+        caseStudy: '#',
+        liveDemo: '#'
+      },
+      'chef-kanwal': {
+        title: 'Chef Kanwal\'s Kitchen',
+        description: 'Edited and optimized recipe videos for YouTube channel, achieving 25% subscriber growth and enhanced viewer engagement. Implemented SEO strategies for video content and created compelling thumbnails.',
+        images: ['img/12.png', 'img/12.png', 'img/12.png'],
+        caseStudy: '#',
+        liveDemo: '#'
+      }
+      // Add more projects as needed
+    };
+    
+    viewProjectButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const projectId = this.getAttribute('data-project');
+        const project = projects[projectId];
+        
+        if (project) {
+          document.getElementById('modalProjectTitle').textContent = project.title;
+          document.getElementById('modalProjectDescription').textContent = project.description;
+          
+          // Set up carousel
+          const carouselInner = document.querySelector('.carousel-inner');
+          carouselInner.innerHTML = '';
+          
+          project.images.forEach((image, index) => {
+            const carouselItem = document.createElement('div');
+            carouselItem.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+            carouselItem.innerHTML = `<img src="${image}" class="d-block w-100" alt="${project.title}">`;
+            carouselInner.appendChild(carouselItem);
+          });
+          
+          // Set up gallery
+          const projectGallery = document.querySelector('.project-gallery');
+          projectGallery.innerHTML = '';
+          
+          project.images.forEach((image, index) => {
+            const galleryImg = document.createElement('img');
+            galleryImg.src = image;
+            galleryImg.className = 'gallery-img';
+            galleryImg.alt = `${project.title} - Image ${index + 1}`;
+            galleryImg.addEventListener('click', () => {
+              // Switch to the corresponding carousel item
+              const carousel = new bootstrap.Carousel(document.getElementById('projectCarousel'));
+              carousel.to(index);
+            });
+            projectGallery.appendChild(galleryImg);
+          });
+          
+          // Set up links
+          document.querySelector('.case-study').href = project.caseStudy;
+          document.querySelector('.live-demo').href = project.liveDemo;
+          
+          // Show modal
+          projectModal.show();
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
